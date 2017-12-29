@@ -1,0 +1,56 @@
+<h2>{{title}}</h2>
+<style>
+    table, th, td {
+    border: 1px solid black;
+    }
+    input, button {
+        display: block;
+        margin-bottom: 10px;
+    }
+    .caja {
+        width: 100px;
+        height: 100px;
+        display: block;
+        position: relative;
+        float: left;
+    }
+</style>
+<div *ngIf="flg_mostrar_tabla == true">
+    <label for="">Nombre:</label>
+    <input type="text" [(ngModel)]="nombre">
+
+    <label for="">apellido:</label>
+    <input type="text" [(ngModel)]="apellido">
+
+    <label for="">Edad:</label>
+    <input type="text" [(ngModel)]="edad">
+
+    <label for="">Color:</label>
+    <input type="text" [(ngModel)]="color">
+
+    <button (click)="editarDatos(false);">Editar</button>
+    <button (click)="activarDesactivar(false);">Ocular</button>
+    <div class="caja" [ngStyle]="{'background-color': color}"></div>
+    <table>
+        <thead>
+            <th>Nombre:</th>
+            <th>Apellido:</th>
+            <th>Edad:</th>
+            <th>Acciones</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let per of personas; let i = index">
+                <td>{{per.nombre}}</td>
+                <td>{{per.apellido}}</td>
+                <td>{{per.edad}}</td>
+                <td>
+                    <button (click)="capturarValores(per,i);">Capturar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div *ngIf="flg_mostrar_tabla == false">
+<button (click)="activarDesactivar(true);">Mostrar</button>
+    	<p>La tabla esta oculta</p>
+</div>
